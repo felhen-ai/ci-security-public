@@ -1,0 +1,1 @@
+DATABASE_URL=postgresql://app:${DATABASE_PASSWORD}@db.internal/service

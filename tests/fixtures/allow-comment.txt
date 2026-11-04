@@ -1,0 +1,2 @@
+stripe=whsec_Q7vX2mL9pR4tW8yC6dF1gH3jK5nB7sD9 # gitleaks:allow
+bot=123456789:AAq7Vx2Lm9Np4Rt8Wy6Za3Bc1De5Fg0HiJk # gitleaks:allow

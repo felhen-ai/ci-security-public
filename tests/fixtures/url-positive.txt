@@ -1,0 +1,1 @@
+DATABASE_URL=postgresql://app:K7mQ2vL9xR4nT8pW@db.internal/service
