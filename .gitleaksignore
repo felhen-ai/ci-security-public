@@ -1,0 +1,13 @@
+# Exact fingerprints for reviewed synthetic fixtures only; do not add broad exclusions.
+1e5854b4b88d6a035b137835a7cc44fe4e62c0c3:tests/fixtures/basic-positive.txt:http-basic-authorization:1
+1e5854b4b88d6a035b137835a7cc44fe4e62c0c3:tests/fixtures/stripe-positive.txt:stripe-webhook-signing-secret:1
+1e5854b4b88d6a035b137835a7cc44fe4e62c0c3:tests/fixtures/gcp-positive.json:gcp-api-key-bare:1
+1e5854b4b88d6a035b137835a7cc44fe4e62c0c3:tests/fixtures/provider-loopback.txt:telegram-bot-token-bare:1
+1e5854b4b88d6a035b137835a7cc44fe4e62c0c3:tests/fixtures/allow-comment.txt:telegram-bot-token-bare:2
+1e5854b4b88d6a035b137835a7cc44fe4e62c0c3:tests/fixtures/allow-comment.txt:stripe-webhook-signing-secret:1
+1e5854b4b88d6a035b137835a7cc44fe4e62c0c3:tests/fixtures/telegram-positive.yml:telegram-bot-token-bare:1
+1e5854b4b88d6a035b137835a7cc44fe4e62c0c3:tests/fixtures/bearer-positive.txt:http-bearer-authorization:1
+1e5854b4b88d6a035b137835a7cc44fe4e62c0c3:tests/fixtures/provider-in-tests.txt:http-bearer-authorization:1
+1e5854b4b88d6a035b137835a7cc44fe4e62c0c3:tests/fixtures/provider-in-tests.txt:telegram-bot-token-bare:2
+1e5854b4b88d6a035b137835a7cc44fe4e62c0c3:tests/fixtures/provider-in-tests.txt:gcp-api-key:3
+1e5854b4b88d6a035b137835a7cc44fe4e62c0c3:tests/fixtures/provider-in-tests.txt:gcp-api-key-bare:3
