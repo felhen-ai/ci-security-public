@@ -7,7 +7,7 @@ collection: felhen-ci-security-public
 owner: felhen-ai
 status: current
 canonical: README.md
-globalRef: github://felhen-ai/ci-security-public/README.md
+globalRef: qmd://felhen-ci-security-public/README.md
 reviewCadenceDays: 90
 lastReviewedAt: 2026-11-04
 sourceRefs:
