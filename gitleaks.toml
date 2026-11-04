@@ -1,0 +1,77 @@
+title = "Felhen secret scan"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "url-embedded-credentials"
+description = "Connection string or URL with embedded password (postgres, mysql, redis, amqp, mongodb, http)"
+regex = '''(?i)\b(?:postgres(?:ql)?|mysql|mariadb|redis|rediss|amqps?|mongodb(?:\+srv)?|https?|ftp)://[^:\s/@'"`]{1,64}:([^@\s/'"`]{6,128})@[^\s'"`]+'''
+secretGroup = 1
+entropy = 2.5
+keywords = ["://"]
+  [[rules.allowlists]]
+  regexTarget = "secret"
+  regexes = [
+    '''(?i)^(?:password|passwd|pass|changeme|change_me|secret|example|placeholder|your[_-]?password|xxx+|\*+|\.\.\.)$''',
+    '''^\$\{?[A-Za-z_][A-Za-z0-9_]*\}?$''',
+    '''^<[^>]+>$''',
+    '''^\{\{.*\}\}$''',
+  ]
+  [[rules.allowlists]]
+  description = "loopback and reserved hosts"
+  regexTarget = "match"
+  regexes = ['''@(?:localhost|127\.0\.0\.1|0\.0\.0\.0|\[::1\]|[A-Za-z0-9.-]+\.(?:invalid|test|example|localhost))(?:[:/?#'"`\s]|$)''']
+  [[rules.allowlists]]
+  description = "test code and fixtures"
+  paths = ['''(?:^|/)(?:tests?|__tests__|spec|fixtures?|testdata|e2e)/''', '''\.(?:test|spec)\.[cm]?[jt]sx?$''', '''(?:^|/)test_[^/]+\.py$''', '''_test\.(?:py|go)$''', '''(?:^|/)conftest\.py$''']
+
+[[rules]]
+id = "http-bearer-authorization"
+description = "Hardcoded Authorization: Bearer token"
+regex = '''(?i)\bauthorization\b['"]?\s*[:=,]\s*['"]?bearer\s+([A-Za-z0-9\-._~+/]{20,}=*)'''
+secretGroup = 1
+entropy = 3.0
+keywords = ["bearer"]
+
+[[rules]]
+id = "http-basic-authorization"
+description = "Hardcoded Authorization: Basic credentials"
+regex = '''(?i)\bauthorization\b['"]?\s*[:=,]\s*['"]?basic\s+([A-Za-z0-9+/]{16,}={0,2})'''
+secretGroup = 1
+entropy = 3.0
+keywords = ["basic"]
+
+# As regras padrão exigem contexto ("telegr" colado à chave) que configs reais
+# como alertmanager (bot_token) não têm.
+[[rules]]
+id = "telegram-bot-token-bare"
+description = "Telegram bot token in any context"
+regex = '''\b([0-9]{8,10}:AA[0-9A-Za-z_\-]{33})(?:[^0-9A-Za-z_\-]|$)'''
+secretGroup = 1
+keywords = [":aa"]
+
+# A regra padrão gcp-api-key exige terminador e perde chaves em JSON escapado
+# ou serializado (ex.: dump de WordPress).
+[[rules]]
+id = "gcp-api-key-bare"
+description = "Google API key in any context"
+regex = '''\b(AIza[0-9A-Za-z_\-]{35})(?:[^0-9A-Za-z_\-]|$)'''
+secretGroup = 1
+keywords = ["aiza"]
+
+# Não há regra padrão para o signing secret de webhook da Stripe.
+[[rules]]
+id = "stripe-webhook-signing-secret"
+description = "Stripe webhook signing secret"
+regex = '''\b(whsec_[A-Za-z0-9]{24,})(?:[^A-Za-z0-9]|$)'''
+secretGroup = 1
+keywords = ["whsec_"]
+
+# Estende a regra padrão generic-api-key: código de teste e fixtures geram chaves
+# sintéticas o tempo todo. Regras de provedor continuam valendo nesses caminhos.
+[[rules]]
+id = "generic-api-key"
+  [[rules.allowlists]]
+  description = "test code and fixtures"
+  paths = ['''(?:^|/)(?:tests?|__tests__|spec|fixtures?|testdata|e2e)/''', '''\.(?:test|spec)\.[cm]?[jt]sx?$''', '''(?:^|/)test_[^/]+\.py$''', '''_test\.(?:py|go)$''', '''(?:^|/)conftest\.py$''']

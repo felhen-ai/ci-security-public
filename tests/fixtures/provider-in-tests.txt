@@ -1,0 +1,3 @@
+Authorization: Bearer qN7vR2xL9mK4pT8wY6aC3dF1
+bot_token: 123456789:AAq7Vx2Lm9Np4Rt8Wy6Za3Bc1De5Fg0HiJk
+key = "AIzaQ7vX2mL9pR4tW8yC6dF1gH3jK5nB7sD9eUZ"

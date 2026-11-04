@@ -1,0 +1,21 @@
+{
+  "cases": [
+    {"id":"url-positive","source":"tests/fixtures/url-positive.txt","logical_path":"src/app.env","expected_rule_ids":["url-embedded-credentials"]},
+    {"id":"bearer-positive","source":"tests/fixtures/bearer-positive.txt","logical_path":"src/headers.txt","expected_rule_ids":["http-bearer-authorization"]},
+    {"id":"basic-positive","source":"tests/fixtures/basic-positive.txt","logical_path":"src/headers.txt","expected_rule_ids":["http-basic-authorization"]},
+    {"id":"telegram-positive","source":"tests/fixtures/telegram-positive.yml","logical_path":"src/alerts.yml","expected_rule_ids":["telegram-bot-token-bare"]},
+    {"id":"gcp-positive","source":"tests/fixtures/gcp-positive.json","logical_path":"src/dump.json","expected_rule_ids":["gcp-api-key-bare"]},
+    {"id":"stripe-positive","source":"tests/fixtures/stripe-positive.txt","logical_path":"src/webhooks.txt","expected_rule_ids":["stripe-webhook-signing-secret"]},
+    {"id":"generic-positive","source":"tests/fixtures/generic-positive.py","logical_path":"src/app.py","expected_rule_ids":["generic-api-key"]},
+    {"id":"provider-in-tests","source":"tests/fixtures/provider-in-tests.txt","logical_path":"tests/provider_tokens.txt","expected_rule_ids":["gcp-api-key","gcp-api-key-bare","http-bearer-authorization","telegram-bot-token-bare"]},
+    {"id":"provider-loopback","source":"tests/fixtures/provider-loopback.txt","logical_path":"src/loopback.txt","expected_rule_ids":["telegram-bot-token-bare"]},
+    {"id":"allow-comment","source":"tests/fixtures/allow-comment.txt","logical_path":"src/allow.txt","expected_rule_ids":["stripe-webhook-signing-secret","telegram-bot-token-bare"]},
+    {"id":"url-variable-negative","source":"tests/fixtures/url-variable-negative.txt","logical_path":"src/settings.env","expected_rule_ids":[]},
+    {"id":"url-password-negative","source":"tests/fixtures/url-password-negative.txt","logical_path":"src/settings.env","expected_rule_ids":[]},
+    {"id":"url-loopback-negative","source":"tests/fixtures/url-loopback-negative.txt","logical_path":"src/settings.env","expected_rule_ids":[]},
+    {"id":"url-invalid-negative","source":"tests/fixtures/url-invalid-negative.txt","logical_path":"src/settings.env","expected_rule_ids":[]},
+    {"id":"generic-test-py-negative","source":"tests/fixtures/generic-positive.py","logical_path":"tests/test_x.py","expected_rule_ids":[]},
+    {"id":"generic-test-ts-negative","source":"tests/fixtures/generic-positive.py","logical_path":"src/foo.test.ts","expected_rule_ids":[]},
+    {"id":"generic-fixture-negative","source":"tests/fixtures/generic-positive.py","logical_path":"fixtures/key.txt","expected_rule_ids":[]}
+  ]
+}
