@@ -1,7 +1,7 @@
 ---
 title: Felhen Secret Scan
 kind: reference
-area: engineering
+area: development
 project: ci-security-public
 collection: felhen-ci-security-public
 owner: felhen-ai
